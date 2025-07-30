@@ -1,6 +1,8 @@
 
-use "C:\Users\ashai\Dropbox\PC (2)\Downloads\Non_PII_171_Social_welfare_2025_clean.dta" ,clear
+use "D:\Datahub-Materials\Datahub\Datasets\Non_PII_171_Social_welfare_2025_clean.dta",clear
 keep if consent==1
+
+set scheme white_tableau
 
 preserve
 
@@ -10,7 +12,7 @@ recode *_2(1=0)(0=1)
 collapse (mean) q8f*
 ren (q8f q8f_2) (yes no)
 gen question=1
-cd "D:\RIDGE\Datahub\Files"
+cd "D:\Datahub-Materials\Datahub\Files_experiment"
 save question1,replace
 
 restore
@@ -75,12 +77,12 @@ save question6,replace
 
 restore
 
-use "D:\RIDGE\Datahub\Files\question1",clear
-append using "D:\RIDGE\Datahub\Files\question2"
-append using "D:\RIDGE\Datahub\Files\question3"
-append using "D:\RIDGE\Datahub\Files\question4"
-append using "D:\RIDGE\Datahub\Files\question5"
-append using "D:\RIDGE\Datahub\Files\question6"
+use "D:\Datahub-Materials\Datahub\Files_experiment\question1.dta",clear
+append using "D:\Datahub-Materials\Datahub\Files_experiment\question2.dta"
+append using "D:\Datahub-Materials\Datahub\Files_experiment\question3.dta"
+append using "D:\Datahub-Materials\Datahub\Files_experiment\question4.dta"
+append using "D:\Datahub-Materials\Datahub\Files_experiment\question5.dta"
+append using "D:\Datahub-Materials\Datahub\Files_experiment\question6.dta"
 
 
 generate str var4 = "Is electricity consistently available during office hours?" in 1
